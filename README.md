@@ -1,69 +1,87 @@
-🚀 **Instrucciones de Instalación y Despliegue**
+# Project Title
 
-## 🖥️ 1. Ejecución Local
-_Requisitos: Python 3.9+, pip, MySQL (o SQLite para pruebas)_
+One Paragraph of project description goes here
 
-```bash
-# 1. Clona el repositorio
-git clone https://github.com/sofia-donoso21/optica-maipu.git
-cd optica-almonacid
+## Getting Started
 
-# 2. Crea un entorno virtual
-python -m venv venv
-source venv/bin/activate   # En Windows: venv\Scripts\activate
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-# 3. Instala las dependencias
-pip install -r requirements.txt
+### Prerequisites
 
-# 4. Configura las variables de entorno (ejemplo en .env)
-# FLASK_APP=app.py
-# DB_HOST=localhost
-# DB_USER=root
-# DB_PASS=tu_clave
-# DB_NAME=optica
+What things you need to install the software and how to install them
 
-# 5. Inicializa la base de datos (si usas SQLAlchemy)
-python setup_db.py  # o script equivalente de migración
+```
+Give examples
+```
 
-# 6. Ejecuta la app
-flask run
+### Installing
 
+A step by step series of examples that tell you how to get a development env running
 
-## ☁️ 2. Despliegue en Azure App Service
+Say what the step will be
 
-Requisitos: Cuenta de Azure, Azure CLI, App Service Plan (Linux), Python 3.9+
+```
+Give the example
+```
 
-```bash
-# 1. Inicia sesión en Azure
-az login
+And repeat
 
-# 2. Crea un grupo de recursos
-az group create --name OpticaGroup --location eastus
+```
+until finished
+```
 
-# 3. Crea un plan de App Service (Linux)
-az appservice plan create --name OpticaPlan --resource-group OpticaGroup --sku B1 --is-linux
+End with an example of getting some data out of the system or using it for a little demo
 
-# 4. Crea la aplicación web Flask
-az webapp create --resource-group OpticaGroup \
-  --plan OpticaPlan \
-  --name optica-almonacid-app \
-  --runtime "PYTHON|3.9" \
-  --deployment-local-git
+## Running the tests
 
-# 5. Obtén la URL del repositorio remoto para despliegue
-az webapp deployment source config-local-git \
-  --name optica-almonacid-app \
-  --resource-group OpticaGroup
+Explain how to run the automated tests for this system
 
-# 6. Agrega el repositorio remoto a tu proyecto local
-git remote add azure <URL-GIT-proporcionada>
-git push azure main
+### Break down into end to end tests
 
-# 7. Configura las variables de entorno
-az webapp config appsettings set \
-  --name optica-almonacid-app \
-  --resource-group OpticaGroup \
-  --settings FLASK_APP=app.py DB_HOST=<host> DB_USER=<usuario> DB_PASS=<clave> DB_NAME=optica
+Explain what these tests test and why
 
-# 8. Accede a tu aplicación
-# Visita: https://optica-almonacid-app.azurewebsites.net
+```
+Give an example
+```
+
+### And coding style tests
+
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+## Deployment
+
+Add additional notes about how to deploy this on a live system
+
+## Built With
+
+* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [Maven](https://maven.apache.org/) - Dependency Management
+* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+
+## Authors
+
+* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Hat tip to anyone whose code was used
+* Inspiration
+* etc
