@@ -29,19 +29,18 @@ python setup_db.py  # o script equivalente de migración
 # 6. Ejecuta la app
 flask run
 
-## 🚀 Instrucciones de Instalación y Despliegue
+### ☁️ 2. Despliegue en Azure App Service
 
-### 🖥️ 1. Ejecución Local
+> Requisitos: Cuenta de Azure, Azure CLI, App Service Plan
 
-> Requisitos: Python 3.9+, pip, MySQL (o SQLite para pruebas)
-
+```bash
 # 1. Inicia sesión en Azure
 az login
 
 # 2. Crea un grupo de recursos (si no existe)
 az group create --name OpticaGroup --location eastus
 
-# 3. Crea el plan de App Service
+# 3. Crea un plan de App Service (Linux + Python)
 az appservice plan create --name OpticaPlan --resource-group OpticaGroup --sku B1 --is-linux
 
 # 4. Crea la Web App
@@ -53,15 +52,16 @@ az webapp create --resource-group OpticaGroup --plan OpticaPlan \
 az webapp deployment source config-local-git \
   --name optica-almonacid-app --resource-group OpticaGroup
 
-# 6. Agrega y empuja al remoto
-git remote add azure <url-git-proporcionada>
+# 6. Agrega y empuja al repositorio remoto (Azure)
+git remote add azure <url-git-proporcionada-por-el-comando-anterior>
 git push azure main
 
-# 7. Configura variables de entorno
+# 7. Configura las variables de entorno en Azure (si usas .env)
 az webapp config appsettings set \
   --name optica-almonacid-app \
   --resource-group OpticaGroup \
-  --settings FLASK_ENV=production
+  --settings FLASK_APP=app.py DB_HOST=azure_db_host DB_USER=usuario DB_PASS=clave DB_NAME=optica
+
 
 
 # 🧾 Sistema Automatizado para Óptica Almonacid
