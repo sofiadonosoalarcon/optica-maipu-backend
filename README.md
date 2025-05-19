@@ -68,20 +68,34 @@ az webapp config appsettings set \
   --resource-group OpticaGroup \
   --settings FLASK_ENV=production
 
-## 🧪  Ejecución de Tests 
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+### Despliegue en Azure App Service
+> Requisitos: Cuenta de Azure, CLI de Azure, App Service plan
 
 ```
+# 1. Inicia sesión en Azure
+az login
 
-```
-pip install pytest
-pip install pytest-cov
-```
+# 2. Crea un grupo de recursos (si no existe)
+az group create --name OpticaGroup --location eastus
 
-```
-pytest --cov=coverage_package
+# 3. Crea el plan de App Service
+az appservice plan create --name OpticaPlan --resource-group OpticaGroup --sku B1 --is-linux
+
+# 4. Crea la Web App
+az webapp create --resource-group OpticaGroup --plan OpticaPlan \
+  --name optica-almonacid-app --runtime "PYTHON|3.9" \
+  --deployment-local-git
+
+# 5. Obtén la URL del repositorio Git para hacer push
+az webapp deployment source config-local-git \
+  --name optica-almonacid-app --resource-group OpticaGroup
+
+# 6. Agrega y empuja al remoto
+git remote add azure <url-git-proporcionada>
+git push azure main
+
+# 7. Configura variables de entorno
+az webapp config appsettings set \
+  --name optica-almonacid-app \
+  --resource-group OpticaGroup \
+  --settings FLASK_ENV=production
