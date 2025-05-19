@@ -1,18 +1,43 @@
-# Project Title
+# Óptica Almonacid
 
-One Paragraph of project description goes here
+La transformación digital ha generado profundas transformaciones en los modelos operativos de las empresas, especialmente en aquellas que buscan mejorar su eficiencia y adaptarse a un entorno competitivo cada vez más exigente. En este contexto, la automatización de procesos como la gestión de inventarios y ventas ha demostrado ser un factor clave para incrementar la productividad, reducir errores y tomar decisiones más informadas (Porter & Heppelmann, 2017).
+Óptica Almonacid, una pequeña empresa familiar ubicada en la comuna de Maipú, ha logrado consolidarse como un proveedor confiable de productos ópticos. Sin embargo, su crecimiento ha evidenciado limitaciones en su modelo de operación, el cual se basa en procedimientos manuales para la administración de inventarios y la emisión de boletas. Esta situación ha provocado inconsistencias en el control de stock, errores en la atención al cliente y dificultades en la planificación de compras.
+La falta de integración entre los procesos de ventas, inventario y finanzas limita la capacidad de respuesta de la óptica ante la demanda del mercado y restringe su proyección a largo plazo. De acuerdo con Kotler y Keller (2016), la adopción de soluciones tecnológicas adecuadas permite a las empresas mejorar su propuesta de valor, reducir costos operacionales y fortalecer la relación con los clientes.
+Este estudio tiene como objetivo analizar las falencias operativas actuales de Óptica Almonacid y proponer una solución tecnológica que permita automatizar sus procesos clave. Se evaluarán distintas alternativas de implementación, considerando su viabilidad técnica, operativa y económica. Asimismo, se abordarán conceptos relacionados con la transformación digital, la gestión de inventarios y el desarrollo de software, con el propósito de entregar una propuesta integral y sostenible en el tiempo.
 
-## Getting Started
+
+## 🖥️ 1. Ejecución Local
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+_Requisitos: Python 3.9+, pip, MySQL (o SQLite para pruebas)_
 
-```
-Give examples
-```
+```bash
+# 1. Clona el repositorio
+git clone https://github.com/sofia-donoso21/optica-maipu.git
+cd optica-almonacid
+
+# 2. Crea un entorno virtual
+python -m venv venv
+source venv/bin/activate   # En Windows: venv\Scripts\activate
+
+# 3. Instala las dependencias
+pip install -r requirements.txt
+
+# 4. Configura las variables de entorno (ejemplo en .env)
+# FLASK_APP=app.py
+# DB_HOST=localhost
+# DB_USER=root
+# DB_PASS=tu_clave
+# DB_NAME=optica
+
+# 5. Inicializa la base de datos (si usas SQLAlchemy)
+python setup_db.py  # o script equivalente de migración
+
+# 6. Ejecuta la app
+flask run
 
 ### Installing
 
