@@ -67,6 +67,7 @@ az webapp config appsettings set \
   --name optica-almonacid-app \
   --resource-group OpticaGroup \
   --settings FLASK_ENV=production
+```
 
 ### Despliegue en Azure App Service
 > Requisitos: Cuenta de Azure, CLI de Azure, App Service plan
