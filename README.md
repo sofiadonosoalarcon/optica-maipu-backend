@@ -29,7 +29,7 @@ python setup_db.py  # o script equivalente de migración
 # 6. Ejecuta la app
 flask run
 
-### ☁️ 2. Despliegue Azure
+## ☁️ 2. Despliegue Azure
 # 1. Inicia sesión en Azure
 az login
 
