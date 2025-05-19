@@ -1,16 +1,6 @@
 # Óptica Almonacid
 
-La transformación digital ha generado profundas transformaciones en los modelos operativos de las empresas, especialmente en aquellas que buscan mejorar su eficiencia y adaptarse a un entorno competitivo cada vez más exigente. En este contexto, la automatización de procesos como la gestión de inventarios y ventas ha demostrado ser un factor clave para incrementar la productividad, reducir errores y tomar decisiones más informadas (Porter & Heppelmann, 2017).
-Óptica Almonacid, una pequeña empresa familiar ubicada en la comuna de Maipú, ha logrado consolidarse como un proveedor confiable de productos ópticos. Sin embargo, su crecimiento ha evidenciado limitaciones en su modelo de operación, el cual se basa en procedimientos manuales para la administración de inventarios y la emisión de boletas. Esta situación ha provocado inconsistencias en el control de stock, errores en la atención al cliente y dificultades en la planificación de compras.
-La falta de integración entre los procesos de ventas, inventario y finanzas limita la capacidad de respuesta de la óptica ante la demanda del mercado y restringe su proyección a largo plazo. De acuerdo con Kotler y Keller (2016), la adopción de soluciones tecnológicas adecuadas permite a las empresas mejorar su propuesta de valor, reducir costos operacionales y fortalecer la relación con los clientes.
-Este estudio tiene como objetivo analizar las falencias operativas actuales de Óptica Almonacid y proponer una solución tecnológica que permita automatizar sus procesos clave. Se evaluarán distintas alternativas de implementación, considerando su viabilidad técnica, operativa y económica. Asimismo, se abordarán conceptos relacionados con la transformación digital, la gestión de inventarios y el desarrollo de software, con el propósito de entregar una propuesta integral y sostenible en el tiempo.
-
-
 ## 🖥️ 1. Ejecución Local
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### Prerequisites
 
 _Requisitos: Python 3.9+, pip, MySQL (o SQLite para pruebas)_
 
@@ -39,15 +29,38 @@ python setup_db.py  # o script equivalente de migración
 # 6. Ejecuta la app
 flask run
 
-### Installing
+### Despliegue en Azure App Service
 
-A step by step series of examples that tell you how to get a development env running
+> Requisitos: Cuenta de Azure, Azure CLI, App Service Plan
 
-Say what the step will be
+```bash
+# 1. Inicia sesión en Azure
+az login
 
-```
-Give the example
-```
+# 2. Crea un grupo de recursos (si no existe)
+az group create --name OpticaGroup --location eastus
+
+# 3. Crea un plan de App Service (Linux + Python)
+az appservice plan create --name OpticaPlan --resource-group OpticaGroup --sku B1 --is-linux
+
+# 4. Crea la Web App
+az webapp create --resource-group OpticaGroup --plan OpticaPlan \
+  --name optica-almonacid-app --runtime "PYTHON|3.9" \
+  --deployment-local-git
+
+# 5. Obtén la URL del repositorio Git para hacer push
+az webapp deployment source config-local-git \
+  --name optica-almonacid-app --resource-group OpticaGroup
+
+# 6. Agrega y empuja al repositorio remoto (Azure)
+git remote add azure <url-git-proporcionada-por-el-comando-anterior>
+git push azure main
+
+# 7. Configura las variables de entorno en Azure (si usas .env)
+az webapp config appsettings set \
+  --name optica-almonacid-app \
+  --resource-group OpticaGroup \
+  --settings FLASK_APP=app.py DB_HOST=azure_db_host DB_USER=usuario DB_PASS=clave DB_NAME=optica
 
 And repeat
 
