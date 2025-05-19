@@ -6,7 +6,7 @@ One Paragraph of project description goes here
 
 Estas instrucciones le permitirán obtener una copia del proyecto en funcionamiento en su equipo local para fines de desarrollo y pruebas. Consulte la sección de implementación para obtener instrucciones sobre cómo implementar el proyecto en un sistema en vivo.
 
-### Ejecución Local 🖥️
+### 🖥️  Ejecución Local 
 > Requisitos: Python 3.9+, pip, MySQL (o SQLite para pruebas)
 
 
@@ -36,7 +36,7 @@ python setup_db.py  # o script equivalente de migración
 flask run
 ```
 
-### Despliegue en Azure App Service
+### ☁️  Despliegue en Azure App Service
 > Requisitos: Cuenta de Azure, CLI de Azure, App Service plan
 
 ```
@@ -69,34 +69,6 @@ az webapp config appsettings set \
   --settings FLASK_ENV=production
 ```
 
-### Despliegue en Azure App Service
-> Requisitos: Cuenta de Azure, CLI de Azure, App Service plan
+### 🧪  Ejecución de Tests
+> Requisitos: pytest, pytest-cov
 
-```
-# 1. Inicia sesión en Azure
-az login
-
-# 2. Crea un grupo de recursos (si no existe)
-az group create --name OpticaGroup --location eastus
-
-# 3. Crea el plan de App Service
-az appservice plan create --name OpticaPlan --resource-group OpticaGroup --sku B1 --is-linux
-
-# 4. Crea la Web App
-az webapp create --resource-group OpticaGroup --plan OpticaPlan \
-  --name optica-almonacid-app --runtime "PYTHON|3.9" \
-  --deployment-local-git
-
-# 5. Obtén la URL del repositorio Git para hacer push
-az webapp deployment source config-local-git \
-  --name optica-almonacid-app --resource-group OpticaGroup
-
-# 6. Agrega y empuja al remoto
-git remote add azure <url-git-proporcionada>
-git push azure main
-
-# 7. Configura variables de entorno
-az webapp config appsettings set \
-  --name optica-almonacid-app \
-  --resource-group OpticaGroup \
-  --settings FLASK_ENV=production
