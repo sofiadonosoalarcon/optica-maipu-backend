@@ -29,7 +29,12 @@ python setup_db.py  # o script equivalente de migración
 # 6. Ejecuta la app
 flask run
 
-## 🚀 Despliegue Azure
+## 🚀 Instrucciones de Instalación y Despliegue
+
+### 🖥️ 1. Ejecución Local
+
+> Requisitos: Python 3.9+, pip, MySQL (o SQLite para pruebas)
+
 # 1. Inicia sesión en Azure
 az login
 
