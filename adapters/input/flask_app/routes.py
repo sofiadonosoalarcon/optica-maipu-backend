@@ -14,7 +14,6 @@ api = Api(
     default='General',
     default_label='Operaciones Generales',
     validate=True,
-    doc='/docs',  # Ruta para Swagger UI
     swagger_ui_config={
         'docExpansion': 'list',
         'defaultModelsExpandDepth': -1,
