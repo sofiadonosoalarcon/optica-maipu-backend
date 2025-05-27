@@ -34,29 +34,21 @@ flask run // python boot.py
 az login
 
 # 2. Crea un grupo de recursos (si no existe)
-az group create --name OpticaGroup --location eastus
+az group create --name optica-maipu-resource-group --location eastus
 
 # 3. Crea el plan de App Service
-az appservice plan create --name OpticaPlan --resource-group OpticaGroup --sku B1 --is-linux
+az appservice plan create --name optica-maipu-plan --resource-group optica-maipu-resource-group --sku B1 --is-linux
 
 # 4. Crea la Web App
-az webapp create --resource-group OpticaGroup --plan OpticaPlan \
-  --name optica-almonacid-app --runtime "PYTHON|3.9" \
-  --deployment-local-git
+az webapp create --resource-group optica-maipu-resource-group --plan optica-maipu-plan \
+  --name optica-maipu-backend --runtime "PYTHON|3.13" 
 
-# 5. Obtén la URL del repositorio Git para hacer push
-az webapp deployment source config-local-git \
-  --name optica-almonacid-app --resource-group OpticaGroup
+# 5. Crear el workflow oara el despliegue
 
-# 6. Agrega y empuja al remoto
-git remote add azure https://github.com/sofiadonosoalarcon/optica-maipu.git
-git push azure fix/implementation-products
 
-# 7. Configura variables de entorno
-az webapp config appsettings set \
-  --name optica-maipu \
-  --resource-group optica-maipu-group-resources \
-  --settings FLASK_ENV=production
+
+
+
 ```
 
 ### 🧪  Ejecución de Tests
