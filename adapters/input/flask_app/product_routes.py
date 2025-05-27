@@ -5,7 +5,7 @@ from app.infraestructure.utils.db import SessionLocal
 from app.infraestructure.utils.exceptions import ProductCreationError
 
 # Crear namespace para productos
-ns_products = Namespace('Productos', description='Operaciones relacionadas con productos')
+ns_products = Namespace('Producto', description='Operaciones relacionadas con productos')
 
 # Inyección de dependencias
 db_session = SessionLocal()
@@ -13,7 +13,7 @@ product_repo = SQLProductRepository(db_session)
 product_use_cases = ProductUseCases(product_repo)
 
 # Modelo para documentación Swagger
-product_model = ns_products.model('Product', {
+product_model = ns_products.model('Producto', {
     'producto_id': fields.Integer(readonly=True),
     'nombre': fields.String(required=True, description='Nombre del producto'),
     'descripcion': fields.String(required=True, description='Descripción del producto'),
