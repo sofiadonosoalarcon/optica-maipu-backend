@@ -49,13 +49,13 @@ az webapp deployment source config-local-git \
   --name optica-almonacid-app --resource-group OpticaGroup
 
 # 6. Agrega y empuja al remoto
-git remote add azure <url-git-proporcionada>
-git push azure main
+git remote add azure https://github.com/sofiadonosoalarcon/optica-maipu.git
+git push azure fix/implementation-products
 
 # 7. Configura variables de entorno
 az webapp config appsettings set \
-  --name optica-almonacid-app \
-  --resource-group OpticaGroup \
+  --name optica-maipu \
+  --resource-group optica-maipu-group-resources \
   --settings FLASK_ENV=production
 ```
 
