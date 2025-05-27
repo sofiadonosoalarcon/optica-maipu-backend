@@ -24,7 +24,7 @@ api = Api(
     }
 )
 
-api.add_namespace(ns_users, path='/users')
+# api.add_namespace(ns_users, path='/users')
 api.add_namespace(ns_products, path='/products')
 
 def register_routes(app):
