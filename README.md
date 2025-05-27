@@ -1,13 +1,9 @@
-# Óptica Almonacid
-
-One Paragraph of project description goes here
-
-## Instrucciones de Instalación y Despliegue
+## Óptica Almonacid - Instrucciones de Instalación y Despliegue
 
 Estas instrucciones le permitirán obtener una copia del proyecto en funcionamiento en su equipo local para fines de desarrollo y pruebas. Consulte la sección de implementación para obtener instrucciones sobre cómo implementar el proyecto en un sistema en vivo.
 
 ### 🖥️  Ejecución Local 
-> Requisitos: Python 3.9+, pip, MySQL (o SQLite para pruebas)
+> Requisitos: Python 3.13+, pip, SQL Server Managment Studio
 
 # 1. Clona el repositorio
 ```
@@ -27,10 +23,8 @@ pip install -r requirements.txt
 ```
 python boot.py
 ```
-
 ### ☁️  Despliegue en Azure App Service
 > Requisitos: Cuenta de Azure, CLI de Azure, App Service plan
-
 # 1. Inicia sesión en Azure
 ```
 az login
@@ -131,7 +125,4 @@ jobs:
           app-name: 'backend-optica-maipu'
           slot-name: 'Production'
 ```
-
-### 🧪  Ejecución de Tests
-> Requisitos: pytest, pytest-cov
 
