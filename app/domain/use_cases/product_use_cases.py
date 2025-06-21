@@ -75,12 +75,12 @@ class ProductUseCases:
     def list_products(self):
         """Returns all products."""
         products = self.product_repo.get_all()
-        return [self._to_domain(p) for p in products]
+        return products
 
     def get_product(self, product_id):
         """Returns a product by its ID."""
         product = self.product_repo.get_by_id(product_id)
-        return self._to_domain(product) if product else None
+        return product
 
     def create_product(self, data):
         """Creates a new product and saves it to the repository."""

@@ -1,47 +1,3 @@
-# from app.domain.models.products import Product  
-# from sqlalchemy.orm import Session
-
-# class SQLProductRepository:
-#     def __init__(self, db_session: Session):
-#         self.db = db_session
-
-#     def get_all(self):
-#         return self.db.query(Product).all()
-
-#     def get_by_id(self, product_id: int):
-#         return self.db.query(Product).filter_by(producto_id=product_id).first()
-
-#     def save(self, product: Product):
-#         if product.producto_id:
-#             existing = self.get_by_id(product.producto_id)
-#             if existing:
-#                 existing.nombre = product.nombre
-#                 existing.descripcion = product.descripcion
-#                 existing.precio_unitario = product.precio_unitario
-#                 existing.stock = product.stock
-#                 self.db.commit()
-#                 self.db.refresh(existing)
-#                 return existing
-#         else:
-#             new_product = Product(
-#                 nombre=product.nombre,
-#                 descripcion=product.descripcion,
-#                 precio_unitario=product.precio_unitario,
-#                 stock=product.stock
-#             )
-#             self.db.add(new_product)
-#             self.db.commit()
-#             self.db.refresh(new_product)
-#             return new_product
-
-#     def delete(self, product_id: int):
-#         product = self.get_by_id(product_id)
-#         if product:
-#             self.db.delete(product)
-#             self.db.commit()
-#             return True
-#         return False
-
 from app.domain.models.products import Product
 from sqlalchemy.orm import Session
 from datetime import datetime
@@ -51,6 +7,8 @@ class SQLProductRepository:
         self.db = db_session
 
     def get_all(self):
+        print("Fetching all products from the database " , self.db.query(Product).all())
+        print()
         return self.db.query(Product).all()
 
     def get_by_id(self, product_id: int):

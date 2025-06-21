@@ -10,8 +10,9 @@ class Product(Base):
     descripcion = Column(String(300), nullable=False)
     stock = Column(Integer, nullable=False)
     precio_unitario = Column(Numeric, nullable=False)  # Numeric para precios
-    estado = Column(CHAR(1), nullable=False, default='A')
-    fecha_creacion = Column(DateTime, default=datetime.utcnow, nullable=False)  # Fecha de creación
+    fecha_creacion = Column(DateTime, default=datetime.now, nullable=True)  # Fecha de creación
+    estado = Column(CHAR(1), nullable=True, default='A')
+    
 
     def __repr__(self):
-        return f"<Product(nombre={self.nombre}, precio_unitario={self.precio_unitario}, stock={self.stock}, estado={self.estado})>"
+        return f"<Product(nombre={self.nombre}, descripcion={self.descripcion}, stock={self.stock}, precio_unitario={self.precio_unitario}, fecha_creacion={self.fecha_creacion}, estado={self.estado})>"
